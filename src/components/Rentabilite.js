@@ -17,21 +17,15 @@ const Rentabilite = ({ achats, ventes }) => {
     // Calculer le bénéfice total en fonction des ventes
     ventes.forEach(vente => {
       if (stock[vente.nom]) {
-        const prixTotalVente = vente.quantite * vente.prixUnitaire;
-        const taxe = prixTotalVente * 0.02;
-        const beneficeParVente = prixTotalVente - taxe;
+        const prixTotalVente = vente.quantite * vente.prixUnitaire * 0.98; // Soustraire 2% de taxe
+        const coutAchat = vente.quantite * achats.find(a => a.nom === vente.nom).prixUnitaire;
+        const beneficeParVente = prixTotalVente - coutAchat;
         beneficeTotal += beneficeParVente;
         stock[vente.nom].quantite -= vente.quantite;
       }
     });
 
-    // Calculer le coût total des achats
-    let coutTotalAchats = 0;
-    for (const ressource in stock) {
-      coutTotalAchats += stock[ressource].prixTotal;
-    }
-
-    return beneficeTotal - coutTotalAchats;
+    return beneficeTotal;
   };
 
   return (

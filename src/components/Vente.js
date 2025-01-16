@@ -4,15 +4,16 @@ const Vente = ({ onVente, ressources = [] }) => {
   const [nom, setNom] = useState('');
   const [quantite, setQuantite] = useState(1);
   const [nombreLots, setNombreLots] = useState(1);
-  const [prixTotal, setPrixTotal] = useState(0);
+  const [prixUnitaireLot, setPrixUnitaireLot] = useState(0);
 
   const handleVente = () => {
-    const prixUnitaire = prixTotal / (quantite * nombreLots);
+    const prixUnitaire = prixUnitaireLot / quantite; // Prix unitaire par ressource
+    const prixTotal = prixUnitaireLot * nombreLots * 0.98; // Soustraire 2% de taxe
     onVente({ nom, quantite: quantite * nombreLots, prixUnitaire });
     setNom('');
     setQuantite(1);
     setNombreLots(1);
-    setPrixTotal(0);
+    setPrixUnitaireLot(0);
   };
 
   return (
@@ -42,8 +43,8 @@ const Vente = ({ onVente, ressources = [] }) => {
         <input type="number" className="form-control" value={nombreLots} onChange={(e) => setNombreLots(Number(e.target.value))} />
       </div>
       <div className="form-group">
-        <label>Prix total:</label>
-        <input type="number" className="form-control" value={prixTotal} onChange={(e) => setPrixTotal(Number(e.target.value))} />
+        <label>Prix unitaire du lot:</label>
+        <input type="number" className="form-control" value={prixUnitaireLot} onChange={(e) => setPrixUnitaireLot(Number(e.target.value))} />
       </div>
       <button className="btn btn-primary btn-block" onClick={handleVente}>Vendre</button>
     </div>

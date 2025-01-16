@@ -4,7 +4,6 @@ import Vente from './components/Vente';
 import Rentabilite from './components/Rentabilite';
 import TableauRessources from './components/TableauRessources';
 import saveData from './utils/saveData';
-import './index.css'; // Importez le fichier CSS personnalisé
 
 const App = () => {
   const [achats, setAchats] = useState([]);
