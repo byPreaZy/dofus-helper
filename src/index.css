@@ -1,0 +1,54 @@
+/* src/index.css */
+
+body {
+    background-color: #1a1a1a; /* Couleur de fond inspirée de Dofus */
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .container {
+    background-color: #2d2d2d;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  h1, h2 {
+    color: #8dc63c; /* Couleur de titre inspirée de Dofus */
+  }
+  
+  .btn-primary {
+    background-color: #8dc63c;
+    border-color: #8dc63c;
+  }
+  
+  .btn-primary:hover {
+    background-color: #7bb233;
+    border-color: #7bb233;
+  }
+  
+  .table {
+    background-color: #2d2d2d;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .table th {
+    background-color: #8dc63c;
+    color: #fff;
+  }
+  
+  .table td, .table th {
+    border: 1px solid #444;
+    padding: 8px;
+    text-align: center;
+  }
+  
+  .table tbody tr:nth-child(even) {
+    background-color: #3a3a3a;
+  }
+  
+  .table tbody tr:hover {
+    background-color: #444;
+  }
+  
