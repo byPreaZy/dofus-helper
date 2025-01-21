@@ -11,13 +11,13 @@ const Vente = ({ onVente, achats, ressources }) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    const categoriesAchetees = [...new Set(achats.map(a => ressources.find(r => r.name.fr === a.nom)?.type.fr).filter(Boolean))];
+    const categoriesAchetees = [...new Set(achats.map(a => ressources.find(r => r.name.fr === a.nom)?.type.fr).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     setCategoriesFiltrees(categoriesAchetees);
   }, [achats, ressources]);
 
   useEffect(() => {
     if (categorie) {
-      const filtreRessources = ressources.filter(r => r.type.fr === categorie && achats.some(a => a.nom === r.name.fr));
+      const filtreRessources = ressources.filter(r => r.type.fr === categorie && achats.some(a => a.nom === r.name.fr)).sort((a, b) => a.name.fr.localeCompare(b.name.fr));
       setRessourcesFiltrees(filtreRessources);
     } else {
       setRessourcesFiltrees([]);

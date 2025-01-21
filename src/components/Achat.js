@@ -11,7 +11,7 @@ const Achat = ({ onAchat, ressources }) => {
 
   useEffect(() => {
     if (categorie) {
-      const filtreRessources = ressources.filter(r => r.type.fr === categorie);
+      const filtreRessources = ressources.filter(r => r.type.fr === categorie).sort((a, b) => a.name.fr.localeCompare(b.name.fr));
       setRessourcesFiltrees(filtreRessources);
     } else {
       setRessourcesFiltrees([]);
@@ -34,7 +34,7 @@ const Achat = ({ onAchat, ressources }) => {
     setError('');
   };
 
-  const categories = [...new Set(ressources.map(r => r.type.fr))];
+  const categories = [...new Set(ressources.map(r => r.type.fr))].sort((a, b) => a.localeCompare(b));
 
   return (
     <div className="container mt-4">
