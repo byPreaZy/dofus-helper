@@ -19,6 +19,19 @@ const App = () => {
     setVentes([...ventes, vente]);
   };
 
+  const handleDeleteAchat = (achat) => {
+    setAchats(achats.filter(a => a !== achat));
+  };
+
+  const handleDeleteVente = (vente) => {
+    setVentes(ventes.filter(v => v !== vente));
+    // Supprimer l'achat associé si la vente est supprimée
+    const achatAssocie = achats.find(a => a.nom === vente.nom && a.quantite === vente.quantite);
+    if (achatAssocie) {
+      handleDeleteAchat(achatAssocie);
+    }
+  };
+
   const handleSave = () => {
     const data = { achats, ventes };
     saveData(data, 'data.json');
@@ -30,7 +43,12 @@ const App = () => {
       <Achat onAchat={handleAchat} ressources={ressourcesData} />
       <Vente onVente={handleVente} achats={achats} ressources={ressourcesData} />
       <Rentabilite achats={achats} ventes={ventes} />
-      <TableauRessources achats={achats} ventes={ventes} />
+      <TableauRessources
+        achats={achats}
+        ventes={ventes}
+        onDeleteAchat={handleDeleteAchat}
+        onDeleteVente={handleDeleteVente}
+      />
       <button className="btn btn-primary btn-block mt-4" onClick={handleSave}>Sauvegarder les données</button>
     </div>
   );
