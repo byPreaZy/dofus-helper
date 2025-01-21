@@ -2,9 +2,9 @@ import React from 'react';
 
 const TableauRessources = ({ achats, ventes }) => {
   const calculerBenefice = (achat, vente) => {
-    const prixTotalVente = vente.quantite * vente.prixUnitaire;
-    const taxe = prixTotalVente * 0.02;
-    const benefice = prixTotalVente - taxe - (vente.quantite * achat.prixUnitaire);
+    const prixTotalVente = vente.quantite * vente.prixUnitaire * 0.98; // Soustraire 2% de taxe
+    const coutAchat = vente.quantite * achat.prixUnitaire;
+    const benefice = prixTotalVente - coutAchat;
     return benefice;
   };
 
